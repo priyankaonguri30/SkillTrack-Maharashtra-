@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillTrack Maharashtra</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <h1>SkillTrack Maharashtra</h1>
+
+    <nav>
+        <button onclick="showPage('dashboard')">Dashboard</button>
+        <button onclick="showPage('addTrainee')">Add Trainee</button>
+        <button onclick="showPage('followup')">Follow-up</button>
+        <button onclick="showPage('skillGaps')">Skill Gaps</button>
+    </nav>
+</header>
+
+
+<main>
+
+<!-- ================= DASHBOARD ================= -->
+
+<section id="dashboard" class="page">
+
+    <h2>Dashboard</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Trainees</h3>
+            <p id="totalTrainees">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Certified</h3>
+            <p id="certified">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Employed</h3>
+            <p id="employed">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Unemployed</h3>
+            <p id="unemployed">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Employment Rate</h3>
+            <p id="employmentRate">0%</p>
+        </div>
+
+    </div>
+
+
+    <h2>Trainee Records</h2>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>District</th>
+                <th>Course</th>
+                <th>Employment</th>
+                <th>Company</th>
+            </tr>
+        </thead>
+
+        <tbody id="traineeTableBody"></tbody>
+
+    </table>
+
+</section>
+
+
+<!-- ================= ADD TRAINEE ================= -->
+
+<section id="addTrainee" class="page hidden">
+
+    <h2>Add Trainee</h2>
+
+    <form id="traineeForm">
+
+        <label>Trainee ID</label>
+        <input type="text" name="trainee_id" required>
+
+        <label>Name</label>
+        <input type="text" name="name" required>
+
+        <label>Phone Number</label>
+        <input type="text" name="phone">
+
+        <label>District</label>
+        <input type="text" name="district">
+
+        <label>Training / Course</label>
+        <input type="text" name="course">
+
+        <label>Training Completed</label>
+        <select name="training_completed">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <label>Certificate</label>
+        <select name="certificate_status">
+            <option value="Certified">Certified</option>
+            <option value="Not Certified">Not Certified</option>
+        </select>
+
+        <label>Employment</label>
+        <select name="employment">
+            <option value="Employed">Employed</option>
+            <option value="Unemployed">Unemployed</option>
+        </select>
+
+        <label>Company</label>
+        <input type="text" name="company">
+
+        <label>Salary</label>
+        <input type="number" name="salary">
+
+        <label>Skills</label>
+        <input type="text"
+               name="skills"
+               placeholder="Python, SQL, Excel">
+
+        <button type="submit" class="primary-button">
+            Add Trainee
+        </button>
+
+    </form>
+
+</section>
+
+
+<!-- ================= FOLLOW UP ================= -->
+
+<section id="followup" class="page hidden">
+
+    <h2>Follow-up</h2>
+
+    <form id="followupForm">
+
+        <label>Trainee ID</label>
+        <input type="text" name="trainee_id" required>
+
+        <label>Follow-up Period</label>
+
+        <select name="followup_period">
+            <option value="3 months">3 months</option>
+            <option value="6 months">6 months</option>
+            <option value="12 months">12 months</option>
+        </select>
+
+        <label>Employment</label>
+
+        <select name="employment">
+            <option value="Employed">Employed</option>
+            <option value="Unemployed">Unemployed</option>
+        </select>
+
+        <label>Company Name</label>
+        <input type="text" name="company">
+
+        <label>Current Job Role</label>
+        <input type="text" name="current_job_role">
+
+        <label>Current Salary</label>
+        <input type="number" name="current_salary">
+
+        <label>Consent</label>
+
+        <select name="consent">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <button type="submit" class="primary-button">
+            Submit Follow-up
+        </button>
+
+    </form>
+
+</section>
+
+
+<!-- ================= SKILL GAPS ================= -->
+
+<section id="skillGaps" class="page hidden">
+
+    <h2>Skill Gap Analysis</h2>
+
+    <p>
+        Analyze the skills recorded for trainees.
+    </p>
+
+    <button
+        onclick="loadskillgaps()"
+        class="primary-button">
+        Analyze Skills
+    </button>
+
+    <div id="skillGapResults">
+        <p>Click "Analyze Skills" to view results.</p>
+    </div>
+
+</section>
+
+</main>
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
